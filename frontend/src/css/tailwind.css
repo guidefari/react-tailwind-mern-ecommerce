@@ -6,11 +6,15 @@ main {
 }
 
 h3 {
-  padding: 1rem 0;
+  margin: 1rem 0;
 }
 
 .rating span {
   margin: 0.1rem;
+}
+
+.btn {
+  @apply inline-flex items-center px-3 py-1 mt-4 text-base text-gray-500 bg-gray-800 border-0 rounded focus:outline-none hover:bg-gray-700 md:mt-0;
 }
 
 @tailwind utilities;

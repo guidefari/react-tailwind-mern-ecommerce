@@ -612,11 +612,53 @@ main {
 }
 
 h3 {
-  padding: 1rem 0;
+  margin: 1rem 0;
 }
 
 .rating span {
   margin: 0.1rem;
+}
+
+.btn {
+  --bg-opacity: 1;
+  background-color: #2d3748;
+  background-color: rgba(45, 55, 72, var(--bg-opacity));
+}
+
+.btn:hover {
+  --bg-opacity: 1;
+  background-color: #4a5568;
+  background-color: rgba(74, 85, 104, var(--bg-opacity));
+}
+
+.btn {
+  border-radius: 0.25rem;
+  border-width: 0;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.btn:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.btn {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  --text-opacity: 1;
+  color: #a0aec0;
+  color: rgba(160, 174, 192, var(--text-opacity));
+}
+
+@media (min-width: 768px) {
+  .btn {
+    margin-top: 0;
+  }
 }
 
 .space-y-0 > :not(template) ~ :not(template) {

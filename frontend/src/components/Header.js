@@ -16,7 +16,7 @@ const Header = () => {
                     <Link to='/cart' className="inline-block w-full mr-5 hover:text-white"><ShoppingCart className='inline-block w-5 h-5 mr-2'/>Cart</Link>
                 </nav>
                 <Link to='/login'>
-                    <button className="inline-flex items-center px-3 py-1 mt-4 text-base bg-gray-800 border-0 rounded focus:outline-none hover:bg-gray-700 md:mt-0">
+                    <button className="btn">
                         <User className='w-5 h-5 mr-2'/>
                         Sign In
                     </button>
