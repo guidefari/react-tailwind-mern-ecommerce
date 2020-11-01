@@ -34,7 +34,7 @@ const ProductScreen = ({match}) => {
                           
                           className={product.countInStock === 0 ? 'flex items-center justify-center w-full cursor-not-allowed btn' : 'flex items-center justify-center w-full btn'}
                         >
-                            <ShoppingBag className='w-5 h-5'/>
+                            <ShoppingBag className='w-5 h-5 mr-3'/>
                             Add to cart
                         </button>
                     </div>
