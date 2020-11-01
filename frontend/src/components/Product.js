@@ -1,3 +1,5 @@
+import Rating from '../components/Rating'
+
 const Product = ({product}) => {
     return (
         <div className='p-2'>
@@ -13,9 +15,7 @@ const Product = ({product}) => {
                 </div>
 
                 <div>
-                    <div className='my-3'>
-                        {product.rating} from {product.numReviews} reviews
-                    </div>
+                    <Rating  value={product.rating} text={`${product.numReviews} reviews`} />
                 </div>
 
                 <h3 className='text-xl'>${ product.price}</h3>
