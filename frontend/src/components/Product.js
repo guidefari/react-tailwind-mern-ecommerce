@@ -4,17 +4,17 @@ import Rating from '../components/Rating'
 const Product = ({product}) => {
     return (
         
-    <div class="flex flex-col justify-center items-center max-w-sm mx-auto mb-5">
+    <div className="flex flex-col items-center justify-center max-w-sm mx-auto mb-5">
         <Link to={`/product/${product._id}`}>
-            <img src={product.image} class="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center" alt={product.name}/>
+            <img src={product.image} className="inline-block w-full h-64 bg-gray-300 bg-center bg-cover rounded-lg shadow-md min-w-xs" alt={product.name}/>
         </Link>
 
         <Link to={`/product/${product._id}`}>
-            <div class="w-56 md:w-64 bg-white -mt-10 shadow-lg rounded-lg overflow-hidden">
-                <h3 class="py-2 px-3 text-center font-bold uppercase tracking-wide text-gray-800">{product.name}</h3>
+            <div className="w-56 -mt-10 overflow-hidden bg-white rounded-lg shadow-lg md:w-64">
+                <h3 className="px-3 py-2 font-bold tracking-wide text-center text-gray-800 uppercase">{product.name}</h3>
                 
-                <div class="flex items-center justify-between py-2 px-3 bg-gray-200">
-                    <span class="text-gray-800 font-bold ">${product.price}</span>
+                <div className="flex items-center justify-between px-3 py-2 bg-gray-200">
+                    <span className="font-bold text-gray-800 ">${product.price}</span>
                     <Rating  value={product.rating} color='#2d3748' />
                 </div>
             </div>

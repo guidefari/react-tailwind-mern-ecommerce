@@ -7,7 +7,6 @@ import ProductScreen from './screens/ProductScreen';
 
 function App() {
   return (
-      
     <Router>
       <Header/>
         <main className='container py-6'>
