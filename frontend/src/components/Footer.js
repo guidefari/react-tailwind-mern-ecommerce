@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
         <footer className='container'>
-            <p className='text-center'>
+            <p className="text-center">
                 Copyright &copy; Proshop
             </p>
         </footer>
