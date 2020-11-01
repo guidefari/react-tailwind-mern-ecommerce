@@ -1,13 +1,21 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 import {Link} from 'react-router-dom'
 import Rating from '../components/Rating'
-import products from '../products'
 import {ShoppingBag } from 'react-feather'
 
 
 
 const ProductScreen = ({match}) => {
-    const product = products.find(p=> p._id === match.params.id)
+    const [product, setProduct] = useState({})
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            const {data} = await axios.get(`/api/products/${match.params.id}`)
+            setProduct(data)
+        }
+        fetchProduct()
+    }, []) 
 
     return (
         <>
@@ -23,8 +31,8 @@ const ProductScreen = ({match}) => {
                 <div className='md:w-1/5'>
                     <h3 className='text-4xl leading-none'>{product.name}</h3>
                     <Rating value={product.rating} text={`${product.numReviews} reviews`}/>
-                    <h3 className='text-lg'>Price: <span className='font-bold'>${product.price}</span></h3>
-                    <p>Description: {product.description}</p>
+                    <h3 className='text-lg'><span className='font-bold'>${product.price}</span></h3>
+                    <p>{product.description}</p>
                 </div>
                 <div className='md:w-1/5'>
                     <h3 className='text-lg'>Price: <span className='font-bold'>${product.price}</span></h3>
