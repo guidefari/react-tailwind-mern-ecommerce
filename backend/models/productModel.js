@@ -8,11 +8,11 @@ const reviewSchema = mongoose.Schema({
 
 
 const productSchema = mongoose.Schema({
-    Product: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        // this defines the relationship with the Product model
-        ref: 'Product'
+        // this defines the relationship with the User model
+        ref: 'User'
     },
     name: {
         type: String,
