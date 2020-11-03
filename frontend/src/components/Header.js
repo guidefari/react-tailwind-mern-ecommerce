@@ -13,11 +13,11 @@ const Header = () => {
                     <span className="ml-3 text-xl uppercase">ProShop</span>
                 </Link>
                 <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto">
-                    <Link to='/cart' className="inline-block w-full mr-5 hover:text-white"><ShoppingCart className='inline-block w-5 h-5 mr-2'/>Cart</Link>
+                    <Link to='/cart' className="inline-block w-full mr-5 hover:text-white"><ShoppingCart className='inline-block feather-icon'/>Cart</Link>
                 </nav>
                 <Link to='/login'>
                     <button className="btn">
-                        <User className='w-5 h-5 mr-2'/>
+                        <User className='feather-icon'/>
                         Sign In
                     </button>
                 </Link>
