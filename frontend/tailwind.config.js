@@ -7,7 +7,10 @@ module.exports = {
     experimental: {
       applyComplexClasses: true,
     },
-    purge: ["./src/**/*.js"],
+    purge: {
+      enabled: true,
+      content: ['./src/**/*.js'],
+    },
     theme: {
       container: {
         center: true,
