@@ -48,50 +48,50 @@ const RegisterScreen = ({location, history}) => {
                 {error && <Message>{error}</Message>}
                 {loading && <Loader></Loader>}
                 <div className="mb-4">
-                    <label className="block mb-2 text-sm font-normal text-gray-700" for="email">Name</label>
+                    <label className="block mb-2 text-sm font-normal text-gray-700" htmlFor="email">Name</label>
                     <input
                         className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                         name="name"
                         type="text"
                         required
-                        autofocus
+                        autoFocus
                         placeholder="Name"
                         value={name} onChange={(e) => setName(e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block mb-2 text-sm font-normal text-gray-700" for="email">Email</label>
+                    <label className="block mb-2 text-sm font-normal text-gray-700" htmlFor="email">Email</label>
                     <input
                         className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                         name="email"
                         type="email"
                         required
-                        autofocus
+                        autoFocus
                         placeholder="Email"
                         value={email} onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
                 <div className="mb-6">
-                    <label className="block mb-2 text-sm font-normal text-gray-700" for="password">Password</label>
+                    <label className="block mb-2 text-sm font-normal text-gray-700" htmlFor="password">Password</label>
                     <input
                         className="w-full px-3 py-2 mb-3 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                         type="password"
                         placeholder="Password"
                         name="password"
                         required
-                        autocomplete="current-password"
+                        autoComplete="current-password"
                         value={password} onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
                 <div className="mb-6">
-                    <label className="block mb-2 text-sm font-normal text-gray-700" for="confirmPassword">Confirm Password</label>
+                    <label className="block mb-2 text-sm font-normal text-gray-700" htmlFor="confirmPassword">Confirm Password</label>
                     <input
                         className="w-full px-3 py-2 mb-3 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                         type="password"
                         placeholder="Confirm Password"
                         name="confirmPassword"
                         required
-                        autocomplete="current-password"
+                        autoComplete="current-password"
                         value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 </div>
@@ -114,15 +114,3 @@ const RegisterScreen = ({location, history}) => {
 }
 
 export default RegisterScreen
-
-            // <h1>Sign in</h1>
-            // <form classNameName='block' >
-            //     <label htmlFor="email">Email address</label>
-            //     <input type="email" placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
-            //     <label htmlFor="password">password</label>
-            //     <input type="password" placeholder='Enter password' value={password} onChange={(e) => setPassword(e.target.value)}/>
-            //     <button>sign in</button>
-            // </form>
-            // <div>
-            //     <p>New Customer?{' '}<Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>Register</Link></p>
-            // </div>
