@@ -5,6 +5,7 @@ import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
 import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Header/>
         <main className='container py-6'>
           <Route path='/login' component={LoginScreen}/>
+          <Route path='/register' component={RegisterScreen}/>
           <Route path='/product/:id' component={ProductScreen}/>
           {/* the question mark means the id variable is optional, because sometimes you just want the cart */}
           <Route path='/cart/:id?' component={CartScreen}/>
