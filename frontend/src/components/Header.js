@@ -1,7 +1,18 @@
+import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {ShoppingCart, User } from 'react-feather'
+import {LogOut, ShoppingCart, User } from 'react-feather'
+import { logout } from "../actions/userActions";
 
 const Header = () => {
+    const dispatch = useDispatch()
+    
+    const userLogin = useSelector(state => state.userLogin)
+    const {userInfo} = userLogin
+    
+    const logoutHandler = () => {
+        dispatch(logout())
+    }
+    
     return (
 
         <header className="text-gray-500 bg-gray-900 body-font ">
@@ -15,12 +26,28 @@ const Header = () => {
                 <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto">
                     <Link to='/cart' className="inline-block w-full mr-5 hover:text-white"><ShoppingCart className='inline-block feather-icon'/>Cart</Link>
                 </nav>
+                {userInfo ? (
+                    <nav className='space-x-3'>
+                        <Link title={`${userInfo.name}'s Profile`} to='/profile'>
+                            <button className="btn">
+                                <User className='feather-icon'/>
+                                {userInfo.name}
+                            </button>
+                        </Link>
+                        <button onClick={logoutHandler} className="btn">
+                            <LogOut className='feather-icon'/>
+                            Logout
+                        </button>
+                    </nav>
+                ) : (
+
                 <Link to='/login'>
                     <button className="btn">
                         <User className='feather-icon'/>
                         Sign In
                     </button>
                 </Link>
+                )}
             </div>
         </header>
 
