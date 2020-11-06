@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import Rating from '../components/Rating'
-import {ShoppingBag } from 'react-feather'
+import {ArrowLeftCircle, ShoppingBag } from 'react-feather'
 import {listProductDetails} from '../actions/productActions'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
@@ -26,7 +26,7 @@ const ProductScreen = ({history, match}) => {
     return (
         <>
             <div className='mb-5'>
-                <Link to='/' className='btn'> Go back</Link>
+                <Link title='Go Back' to='/' className='py-1 btn'><ArrowLeftCircle className='mr-0 align-bottom feather-icon'/></Link>
             </div>
             {
                 loading ? (

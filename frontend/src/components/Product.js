@@ -5,7 +5,7 @@ const Product = ({product}) => {
     return (
         
     <div className="flex flex-col items-center justify-center max-w-sm mx-auto mb-5">
-        <Link to={`/product/${product._id}`}>
+        <Link className='inline-block w-full min-w-xs' to={`/product/${product._id}`}>
             <img src={product.image} className="inline-block w-full h-64 bg-gray-300 bg-center bg-cover rounded-lg shadow-md min-w-xs" alt={product.name}/>
         </Link>
 

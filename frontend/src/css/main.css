@@ -902,6 +902,10 @@ h3 {
   margin-right: auto;
 }
 
+.mr-0 {
+  margin-right: 0;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -969,6 +973,11 @@ h3 {
 
 .p-5 {
   padding: 1.25rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
 .py-2 {
@@ -1102,6 +1111,10 @@ h3 {
 
 .align-baseline {
   vertical-align: baseline;
+}
+
+.align-bottom {
+  vertical-align: bottom;
 }
 
 .w-5 {
