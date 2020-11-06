@@ -40,31 +40,48 @@ const CartScreen = ({match, location, history}) => {
                 ) : (
                 <div>
                     {cartItems.map(item => (
-                        <div className='flex flex-row items-center space-x-8' key={item.product}>
-                            <img className='inline-block w-20 rounded-md' src={item.image} alt={item.name}/>
-                            <Link to={`/product/${item.product}`}>{item.name}</Link>
-                            <div className=''>${item.price}</div>
-                            <div className=''>
-                                Qty:
-                                <select name="quantity" id="quantity" value={item.qty} onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
-                                    {[...Array(item.countInStock).keys()].map(x => (
-                                        <option key={x+1} value ={x+1}>{x+1}</option>
-                                    ))}
-                                </select>
-                            </div>
-                            <button onClick={() => removeFromCartHandler(item.product)}><Trash className='feather-icon'/></button>
+                        <div className='grid grid-cols-10 py-3' key={item.product}>
+                            {/* <div className='flex flex-row items-center space-x-8' key={item.product}> */}
+                                <div className='flex items-center col-span-2'>
+                                    <img className='inline-block h-20 mx-auto rounded-md' src={item.image} alt={item.name}/>
+                                </div>
+                                <div className='flex items-center col-span-5'> 
+                                    <Link  to={`/product/${item.product}`}>{item.name}</Link>
+                                </div>
+                                <div className='flex items-center col-span-1'>
+                                    Qty:
+                                    <select name="quantity" id="quantity" value={item.qty} onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
+                                        {[...Array(item.countInStock).keys()].map(x => (
+                                            <option key={x+1} value ={x+1}>{x+1}</option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div className='flex items-center justify-end col-span-1'>
+                                    <h2 className=''>${item.price}</h2>
+                                </div>
+                                <div className='flex items-center px-5'>
+                                    <button classNames='' onClick={() => removeFromCartHandler(item.product)}><Trash className='feather-icon'/></button>
+                                </div>
+                            {/* </div> */}
                         </div>
                     ))}
+                    <hr/>
                     <div>
-                        <h2>Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items</h2>
-                        ${cartItems.reduce((acc, item) => acc = item.qty*item.price, 0).toFixed(2)}
-                        <button
-                                onClick={checkoutHandler}
-                                className={cartItems === 0 ? 'flex items-center justify-center w-full cursor-not-allowed btn' : 'flex items-center justify-center w-full btn'}
-                                >
-                                    <CornerDownRight className='w-5 h-5 mr-3'/>
-                                    Proceed to checkout
+                        <div className='grid grid-cols-10'>
+                            {/* What, you've never done some styling with a div before?😂 */}
+                            <div className='col-span-8'></div>
+                            <div className='col-span-1 space-y-4'>
+                                <h2 className='text-xl text-right'>Subtotal</h2>
+                                <h2 className='text-lg text-right'>${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}</h2>
+                                <button
+                                        onClick={checkoutHandler}
+                                        className={cartItems === 0 ? 'flex items-center justify-center w-full cursor-not-allowed btn' : 'flex items-center justify-center w-full btn'}
+                                        >
+                                            <CornerDownRight className='w-5 h-5 mr-3'/>
+                                            Checkout
                                 </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
