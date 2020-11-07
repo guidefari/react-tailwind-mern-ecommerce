@@ -9,6 +9,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
+import PlaceOrderScreen from './screens/PlaceOrderScreen';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/shipping' component={ShippingScreen} />
           <Route path='/payment' component={PaymentScreen} />
           <Route path='/product/:id' component={ProductScreen}/>
+          <Route path='/placeorder' component={PlaceOrderScreen} />
           {/* the question mark means the id variable is optional, because sometimes you just want the cart */}
           <Route path='/cart/:id?' component={CartScreen}/>
           <Route path='/' component={HomeScreen} exact/>

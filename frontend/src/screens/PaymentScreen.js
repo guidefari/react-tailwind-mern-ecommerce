@@ -27,9 +27,9 @@ const PaymentScreen = ({history}) => {
         <FormContainer>
             <CheckoutSteps step1 step2 step3 />
             <form onSubmit={submitHandler} className="px-12 pt-6 pb-8 mb-4 bg-white rounded shadow-lg">
-                <h1 flex justify-center py-2 mb-4 text-2xl text-gray-800 border-b-2>Payment Method</h1>
+                <h1 className='flex justify-center py-2 mb-4 text-2xl text-gray-800 border-b-2'>Payment Method</h1>
 
-            <div className="mt-4">
+            <div className="my-4">
             <span className="text-gray-700">Select Method</span>
             <div className="mt-2">
                 <label className="inline-flex items-center">
