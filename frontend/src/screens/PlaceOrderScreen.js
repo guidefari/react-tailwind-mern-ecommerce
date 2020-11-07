@@ -1,11 +1,14 @@
 
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
+import { createOrder } from '../actions/orderActions'
 
-const PlaceOrder = () => {
+const PlaceOrder = ({history}) => {
+    const dispatch = useDispatch()
+    
     const cart = useSelector((state) => state.cart)
 
   //   Calculate prices
@@ -24,8 +27,28 @@ const PlaceOrder = () => {
         Number(cart.taxPrice)
     ).toFixed(2)
 
+    const orderCreate = useSelector((state) => state.orderCreate)
+    const { order, success, error } = orderCreate
+
+    useEffect(() => {
+        if (success) {
+            history.push(`/order/${order._id}`)
+        }
+        // eslint-disable-next-line
+    }, [history, success])
+
     const placeOrderHandler = () => {
-        console.log('order')
+        dispatch(
+            createOrder({
+                orderItems: cart.cartItems,
+                shippingAddress: cart.shippingAddress,
+                paymentMethod: cart.paymentMethod,
+                itemsPrice: cart.itemsPrice,
+                shippingPrice: cart.shippingPrice,
+                taxPrice: cart.taxPrice,
+                totalPrice: cart.totalPrice,
+            })
+        )
     }
 
     return (
@@ -84,13 +107,16 @@ const PlaceOrder = () => {
                         <h2>Total</h2>
                         <p>${cart.totalPrice}</p>
                     </div>
+                    <div>
+                        {error && <Message variant='danger'>{error}</Message>}
+                    </div>
                     <div className="flex items-center justify-center">
-                    <button 
-                    className={cart.cartItems === 0 ? 'cursor-not-allowed inline-block px-4 py-2 text-white bg-blue-500 rounded shadow-lg hover:bg-blue-600 focus:bg-blue-700' : 'btn inline-block px-4 py-2 text-white bg-blue-500 rounded shadow-lg hover:bg-blue-600 focus:bg-blue-700'}
-                    type="button" onClick={placeOrderHandler}>
-                        Place Order
-                    </button>
-                </div>
+                        <button 
+                            className={cart.cartItems === 0 ? 'cursor-not-allowed inline-block px-4 py-2 text-white bg-blue-500 rounded shadow-lg hover:bg-blue-600 focus:bg-blue-700' : 'btn inline-block px-4 py-2 text-white bg-blue-500 rounded shadow-lg hover:bg-blue-600 focus:bg-blue-700'}
+                            type="button" onClick={placeOrderHandler}>
+                            Place Order
+                        </button>
+                    </div>
                 </div>
             </div>
         </>
