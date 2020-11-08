@@ -82,7 +82,7 @@ const PlaceOrder = ({history}) => {
                                         <Link to={`/product/${item.product}`}>
                                             {item.name}
                                         </Link>
-                                        {item.qty} x ${item.price} = ${item.qty * item.price}
+                                        {item.qty} x ${item.price} = ${(item.qty * item.price).toFixed(2)}
                                     </div>
                                 ))}
                             </div>
