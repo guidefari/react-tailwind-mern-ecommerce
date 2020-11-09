@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import {Link} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import {getUserDetails, updateUserProfile} from '../actions/userActions'
 import { USER_UPDATE_PROFILE_RESET} from '../constants/userConstants'
+import { listMyOrders } from '../actions/orderActions'
 
 const ProfileScreen = ({location, history}) => {
     const [name, setName] = useState('')
@@ -22,21 +24,24 @@ const ProfileScreen = ({location, history}) => {
 
     const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
     const { success } = userUpdateProfile
-    
+
+    const orderListMy = useSelector((state) => state.orderListMy)
+    const { loading: loadingOrders, error: errorOrders, orders } = orderListMy
 
     useEffect(() => {
         if (!userInfo) {
-          history.push('/login')
+            history.push('/login')
         } else {
-          if (!user.name || success) {
-            dispatch({type: USER_UPDATE_PROFILE_RESET})
-            dispatch(getUserDetails('profile'))
-          } else {
+            if (!user.name || success) {
+                dispatch({type: USER_UPDATE_PROFILE_RESET})
+                dispatch(getUserDetails('profile'))
+                dispatch(listMyOrders())
+            } else {
             setName(user.name)
             setEmail(user.email)
-          }
+            }
         }
-      }, [dispatch, history, userInfo, user, success])
+    }, [dispatch, history, userInfo, user, success])
     
     const submitHandler = (e) => {
         e.preventDefault()
@@ -118,6 +123,54 @@ const ProfileScreen = ({location, history}) => {
             </div>
             <div className='col-span-9'>
                 <h2 className='flex justify-center py-2 mb-4 text-2xl text-gray-800 border-b-2'>My Orders</h2>
+                    {loadingOrders ? (
+                    <Loader />
+                    ) : errorOrders ? (
+                    <Message>{errorOrders}</Message>
+                    ) : (
+                    <table className='table-auto'>
+                        <thead>
+                        <tr>
+                            <th className='px-4 py-2'>ID</th>
+                            <th className='px-4 py-2'>DATE</th>
+                            <th className='px-4 py-2'> TOTAL</th>
+                            <th className='px-4 py-2'>PAID</th>
+                            <th className='px-4 py-2'>DELIVERED</th>
+                            <th className='px-4 py-2'></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {orders.map((order) => (
+                            <tr key={order._id}>
+                            <td className='px-4 py-2'>{order._id}</td>
+                            <td className='px-4 py-2'>{order.createdAt.substring(0, 10)}</td>
+                            <td className='px-4 py-2'>{order.totalPrice}</td>
+                            <td className='px-4 py-2'>
+                                {order.isPaid ? (
+                                order.paidAt.substring(0, 10)
+                                ) : (
+                                <i className='mx-auto fas fa-times' style={{ color: 'red' }}></i>
+                                )}
+                            </td>
+                            <td className='px-4 py-2'>
+                                {order.isDelivered ? (
+                                order.deliveredAt.substring(0, 10)
+                                ) : (
+                                <i className='mx-auto fas fa-times' style={{ color: 'red' }}></i>
+                                )}
+                            </td>
+                            <td className='px-4 py-2'>
+                                <Link to={`/order/${order._id}`}>
+                                <button className='btn' variant='light'>
+                                    Details
+                                </button>
+                                </Link>
+                            </td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+            )}
             </div>
         </div>
         </>
