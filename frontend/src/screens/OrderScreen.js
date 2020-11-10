@@ -62,6 +62,10 @@ const OrderScreen = ({ match }) => {
         dispatch(payOrder(orderId, paymentResult))
     } 
 
+    const paynowHandler = () => {
+        console.log('cart')
+    }
+
 
     return loading ? (
         <Loader/>
@@ -147,11 +151,16 @@ const OrderScreen = ({ match }) => {
                         {loadingPay && <Loader />}
                         {!sdkReady ? (
                             <Loader />
-                        ) : (
-                            <PayPalButton
-                            amount={order.totalPrice}
-                            onSuccess={successPaymentHandler}
-                            />
+                            ) : (
+                                <div>
+                                    <PayPalButton
+                                    amount={order.totalPrice}
+                                    onSuccess={successPaymentHandler}
+                                    />
+                                    <button className='btn' onClick={paynowHandler}>
+                                        Ecocash/Onemoney
+                                    </button>
+                                </div>
                         )}
                         </div>
                     )}
