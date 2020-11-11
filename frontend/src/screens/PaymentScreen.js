@@ -2,7 +2,7 @@ import  { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
 import CheckoutSteps from '../components/CheckoutSteps'
-import { savePaymentMethod } from '../actions/cartActions'
+import { saveEcocashNumber, savePaymentMethod } from '../actions/cartActions'
 
 
 const PaymentScreen = ({history}) => {
@@ -13,6 +13,7 @@ const PaymentScreen = ({history}) => {
         history.push('/shipping')
     }
 
+    const [ecocashNumber, setEcocashNumber] = useState('')
     const [paymentMethod, setPaymentMethod] = useState('PayPal')
 
     const dispatch = useDispatch()
@@ -20,6 +21,7 @@ const PaymentScreen = ({history}) => {
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(savePaymentMethod(paymentMethod))
+        dispatch(saveEcocashNumber(ecocashNumber))
         history.push('/placeorder')
     }
     
@@ -40,6 +42,22 @@ const PaymentScreen = ({history}) => {
                     <input type="radio" className="form-radio" name="paymentMethod" value="Ecocash" onChange={(e) => setPaymentMethod(e.target.value)}/>
                     <span className="ml-2">Ecocash</span>
                 </label>
+                {
+                    (paymentMethod === 'Ecocash') && (
+                    <div className="mb-4">
+                        <label className="block mb-2 text-sm font-normal text-gray-700" htmlFor="Ecocash">Ecocash Number</label>
+                        <input
+                            className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                            name="Ecocash"
+                            type="text"
+                            required
+                            autoFocus
+                            placeholder="Enter Ecocash Number"
+                            value={ecocashNumber} onChange={(e) => setEcocashNumber(e.target.value)}
+                        />
+                    </div>
+                    )
+                }
             </div>
             </div>
 

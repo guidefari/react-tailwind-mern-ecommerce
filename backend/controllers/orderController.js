@@ -9,6 +9,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     orderItems,
     shippingAddress,
     paymentMethod,
+    ecocashNumber,
     itemsPrice,
     taxPrice,
     shippingPrice,
@@ -24,6 +25,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
             user: req.user._id,
             shippingAddress,
             paymentMethod,
+            ecocashNumber,
             itemsPrice,
             taxPrice,
             shippingPrice,
@@ -56,7 +58,7 @@ const getOrderById = asyncHandler(async (req, res) => {
 const updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
 
-  if (order) {
+  if (order && order.paymentMethod === 'PayPal') {
     order.isPaid = true
     order.paidAt = Date.now()
     order.paymentResult = {
@@ -69,6 +71,10 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
     const updatedOrder = await order.save()
 
     res.json(updatedOrder)
+
+  } else if ( order && order.paymentMethod === 'Ecocash') {
+    order.isPaid = true
+    order.paidAt = Date.now()
   } else {
     res.status(404)
     throw new Error('Order not found')

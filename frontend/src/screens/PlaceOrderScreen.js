@@ -43,6 +43,7 @@ const PlaceOrder = ({history}) => {
                 orderItems: cart.cartItems,
                 shippingAddress: cart.shippingAddress,
                 paymentMethod: cart.paymentMethod,
+                ecocashNumber: cart.ecocashNumber || '',
                 itemsPrice: cart.itemsPrice,
                 shippingPrice: cart.shippingPrice,
                 taxPrice: cart.taxPrice,
@@ -69,6 +70,14 @@ const PlaceOrder = ({history}) => {
                         <h2>Payment Method</h2>
                         <strong>Method: </strong>
                         {cart.paymentMethod}
+                        {
+                            cart.ecocashNumber && (
+                                <div>
+                                <strong>Ecocash Number: </strong>
+                                    {cart.ecocashNumber}
+                                </div>
+                            )
+                        }
                     </div>
                     <div>
                         <h2>Order Items</h2>

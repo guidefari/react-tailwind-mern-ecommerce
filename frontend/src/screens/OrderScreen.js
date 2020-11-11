@@ -18,6 +18,8 @@ const OrderScreen = ({ match }) => {
     const orderDetails = useSelector((state) => state.orderDetails)
     const { order, loading, error } = orderDetails
 
+    
+
     const orderPay = useSelector((state) => state.orderPay)
     const { loading: loadingPay, success: successPay } = orderPay
 
@@ -33,6 +35,8 @@ const OrderScreen = ({ match }) => {
     }
 
     useEffect(() => {
+        
+
         const addPayPalScript = async () => {
             const { data: clientId } = await axios.get('/api/config/paypal')
             const script = document.createElement('script')
@@ -62,7 +66,7 @@ const OrderScreen = ({ match }) => {
         dispatch(payOrder(orderId, paymentResult))
     } 
 
-    const paynowHandler = () => {
+    const paynowHandler = (orderId, ) => {
         console.log('cart')
     }
 
@@ -103,6 +107,14 @@ const OrderScreen = ({ match }) => {
                         <p>
                             <strong>Method: </strong> {order.paymentMethod}
                         </p>
+                        {
+                            order.ecocashNumber && (
+                                <div>
+                                <strong>Ecocash Number: </strong>
+                                    {order.ecocashNumber}
+                                </div>
+                            )
+                        }
                         {order.isPaid ? (
                             <Message >Paid on {order.paidAt}</Message>
                         ) : (
@@ -153,13 +165,22 @@ const OrderScreen = ({ match }) => {
                             <Loader />
                             ) : (
                                 <div>
-                                    <PayPalButton
-                                    amount={order.totalPrice}
-                                    onSuccess={successPaymentHandler}
-                                    />
-                                    <button className='btn' onClick={paynowHandler}>
-                                        Ecocash/Onemoney
-                                    </button>
+                                    {
+                                        order.paymentMethod === "Ecocash" && (
+                                            <button className='btn' onClick={paynowHandler}>
+                                                Ecocash/Onemoney
+                                            </button>
+                                        )
+                                    }
+                                    {
+                                        order.paymentMethod === "PayPal" && (
+                                            <PayPalButton
+                                            amount={order.totalPrice}
+                                            onSuccess={successPaymentHandler}
+                                            />
+
+                                        )
+                                    }
                                 </div>
                         )}
                         </div>

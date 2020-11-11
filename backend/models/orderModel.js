@@ -25,6 +25,9 @@ const orderSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    ecocashNumber: {
+        type: String
+    },
     paymentResult: {
         id: {type: String},
         status: {type: String},
