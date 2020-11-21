@@ -48,6 +48,23 @@ const Header = () => {
                     </button>
                 </Link>
                 )}
+
+                {userInfo && userInfo.isAdmin && (
+                    <nav>
+                    <Link to='/admin/userlist'>
+                        <button className="btn">
+                            <User className='feather-icon'/>
+                            Users
+                        </button>
+                    </Link>
+                    <Link to='admin/productlist'>
+                        Products
+                    </Link>
+                    <Link to='admin/orderlist'>
+                        Orders
+                    </Link>
+                    </nav>
+                )}
             </div>
         </header>
 

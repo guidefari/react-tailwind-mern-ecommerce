@@ -11,6 +11,7 @@ import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
+import UserListScreen from './screens/UserListScreen';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path='/order/:id' component={OrderScreen} />
           {/* the question mark means the id variable is optional, because sometimes you just want the cart */}
           <Route path='/cart/:id?' component={CartScreen}/>
+          <Route path='/admin/userlist' component={UserListScreen}/>
           <Route path='/' component={HomeScreen} exact/>
         </main>
       <Footer/>
